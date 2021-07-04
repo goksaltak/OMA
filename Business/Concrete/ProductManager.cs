@@ -8,12 +8,12 @@ namespace Business.Concrete
 {
     public class ProductManager : IProductService
     {
-        public List<Product> Getall()
+        public List<Tb_Product> Getall()
         {
             throw new NotImplementedException();
         }
 
-        public List<Product> GetAllByCategoryId(int Id)
+        public List<Tb_Product> GetAllByCategoryId(int Id)
         {
             throw new NotImplementedException();
         }

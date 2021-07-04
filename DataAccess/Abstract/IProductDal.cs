@@ -2,10 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Core.DataAccess;
 
 namespace DataAccess.Abstract
 {
-    public interface IProductDal : IEntityRepository<Product>
+    public interface IProductDal : IEntityRepository<Tb_Product>
     {
         
     }

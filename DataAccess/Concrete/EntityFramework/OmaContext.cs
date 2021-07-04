@@ -10,11 +10,11 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=OMA;Trusted_Connection=true");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=OMADB;Trusted_connection=true");
         }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<Tb_Product> tb_Product { get; set; }
+        public DbSet<Tb_Customer> tb_Customer { get; set; }
+        public DbSet<Tb_Order> tb_Order { get; set; }
+        public DbSet<Tb_OrderDetail> tb_OrderDetail { get; set; }
     }
 }
