@@ -1,31 +1,60 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
     public class EfProductDal : IProductDal
     {
-        public void Add(Product product)
+        public void Add(Product entity)
         {
-            throw new NotImplementedException();
+            using (OmaContext context = new OmaContext())
+            {
+                var AddedEntity = context.Entry(entity);
+                AddedEntity.State = EntityState.Added;
+                context.SaveChanges();
+            }
         }
 
-        public void Delete(Product product)
+        public void Delete(Product entity)
         {
-            throw new NotImplementedException();
+            using (OmaContext context = new OmaContext())
+            {
+                var DeletedEntity = context.Entry(entity);
+                DeletedEntity.State = EntityState.Deleted;
+                context.SaveChanges();
+            }
         }
 
-        public List<Product> GetAll()
+        public Product Get(Expression<Func<Product, bool>> filter)
         {
-            throw new NotImplementedException();
+            using (OmaContext context = new OmaContext())
+            {
+                return context.Set<Product>().SingleOrDefault(filter);
+            }
         }
 
-        public void Update(Product product)
+        public List<Product> GetAll(Expression<Func<Product, bool>> filter = null)
         {
-            throw new NotImplementedException();
+            using (OmaContext context = new OmaContext())
+            {
+                return filter == null ? context.Set<Product>().ToList() : context.Set<Product>().Where(filter).ToList();
+            }
+        }
+
+        public void Update(Product entity)
+        {
+            using (OmaContext context = new OmaContext())
+            {
+                var UpdatedEntity = context.Entry(entity);
+                UpdatedEntity.State = EntityState.Modified;
+                context.SaveChanges();
+            }
         }
     }
 }
