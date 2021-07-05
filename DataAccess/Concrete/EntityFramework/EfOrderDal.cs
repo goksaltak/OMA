@@ -21,9 +21,11 @@ namespace DataAccess.Concrete.EntityFramework
                              on o.OrderId equals od.OrderId
                              join c in context.tb_Customer
                              on o.CustomerId equals c.Id
+                             join p in context.tb_Product
+                             on od.ProductId equals p.Id
                              select new OrderDetailDto
                              {
-                                 OrderId = od.OrderId,Name=c.Name
+                                 OrderId=o.OrderId,Name=c.Name,LastName=c.LastName,Adress=o.OrderAdress,Barcode=p.Barcode,Description=p.Description,Quantity=od.Quantity,Price=od.Price
                              };
 
                 return result.ToList();
