@@ -12,9 +12,9 @@ namespace DataAccess.Concrete.EntityFramework
         {
             optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=OMADB;Trusted_connection=true");
         }
-        public DbSet<Tb_Product> tb_Product { get; set; }
-        public DbSet<Tb_Customer> tb_Customer { get; set; }
-        public DbSet<Tb_Order> tb_Order { get; set; }
-        public DbSet<Tb_OrderDetail> tb_OrderDetail { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
     }
 }

@@ -9,10 +9,11 @@ namespace Business.Abstract
 {
     public interface IOrderService
     {
-        IDataResult<List<Tb_Order>> GetAll();
+        IDataResult<List<Order>> GetAll();
         IDataResult<List<OrderDetailDto>> GetOrderDetails();
-        IDataResult<Tb_Order> GetById(int orderId);
-        IResult Add(Tb_Order order);
-
+        IDataResult<Order> GetById(int orderId);
+        IResult Add(Order order);
+        IResult Update(Order order);
+        IResult Delete(Order order);
     }
 }

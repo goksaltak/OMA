@@ -10,7 +10,7 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfProductDal : EfEntityRepositoryBase<Tb_Product,OmaContext>,  IProductDal
+    public class EfProductDal : EfEntityRepositoryBase<Product,OmaContext>,  IProductDal
     {
         
     }

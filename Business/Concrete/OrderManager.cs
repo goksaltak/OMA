@@ -19,26 +19,38 @@ namespace Business.Concrete
             _orderDal = customerDal;
         }
 
-        public IResult Add(Tb_Order order)
+        public IResult Add(Order order)
         {
           
             _orderDal.Add(order);
             return new SuccessResult(Messages.OrderAdded);
         }
 
-        public IDataResult<List<Tb_Order>> GetAll()
+        public IResult Delete(Order order)
         {
-            return new SuccessDataResult<List<Tb_Order>>(_orderDal.GetAll(),Messages.ordersListed);
+            _orderDal.Delete(order);
+            return new SuccessResult(Messages.OrderDeleted);
         }
 
-        public IDataResult<Tb_Order> GetById(int orderId)
+        public IDataResult<List<Order>> GetAll()
         {
-            return new SuccessDataResult<Tb_Order>(_orderDal.Get(o => o.OrderId == orderId));
+            return new SuccessDataResult<List<Order>>(_orderDal.GetAll(),Messages.OrdersListed);
+        }
+
+        public IDataResult<Order> GetById(int orderId)
+        {
+            return new SuccessDataResult<Order>(_orderDal.Get(o => o.Id == orderId));
         }
 
         public IDataResult<List<OrderDetailDto>>GetOrderDetails()
         {
             return new SuccessDataResult<List<OrderDetailDto>>(_orderDal.GetOrderDetails());
+        }
+
+        public IResult Update(Order order)
+        {
+            _orderDal.Update(order);
+            return new SuccessResult(Messages.OrderUpdated);
         }
     }
 }

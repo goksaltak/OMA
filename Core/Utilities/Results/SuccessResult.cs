@@ -8,7 +8,7 @@ namespace Core.Utilities.Results
     {
         public SuccessResult(string message):base(true)
         {
-
+            base.Message = message;
         }
         public SuccessResult():base(true)
         {

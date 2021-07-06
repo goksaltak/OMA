@@ -8,7 +8,7 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfOrderDetailDal : EfEntityRepositoryBase<Tb_OrderDetail, OmaContext>, IOrderDetailDal
+    public class EfOrderDetailDal : EfEntityRepositoryBase<OrderDetail, OmaContext>, IOrderDetailDal
     {
        
     }

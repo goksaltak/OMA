@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using DataAccess.Abstract;
+using Core.Utilities.Results;
+using Business.Constants;
 
 namespace Business.Concrete
 {
@@ -16,9 +18,29 @@ namespace Business.Concrete
             _customerDal = customerDal;
         }
 
-        public List<Tb_Customer> GetAll()
+        public IResult Add(Customer customer)
         {
-            return _customerDal.GetAll();
+            _customerDal.Add(customer);
+            return new SuccessResult(Messages.CustomerAdded);
+        }
+
+        public IResult Delete(Customer customer)
+        {
+            _customerDal.Delete(customer);
+            return new SuccessResult(Messages.CustomerDeleted);
+        }
+
+        public IDataResult<List<Customer>> GetAll()
+        {
+            return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(), Messages.CustomersListed);
+
+        }
+
+
+        public IResult Update(Customer customer)
+        {
+            _customerDal.Update(customer);
+            return new SuccessResult(Messages.CustomerUpdated);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Results;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -8,12 +9,22 @@ namespace Business.Concrete
 {
     public class ProductManager : IProductService
     {
-        public List<Tb_Product> Getall()
+        public IResult Add(Product product)
         {
             throw new NotImplementedException();
         }
 
-        public List<Tb_Product> GetAllByCategoryId(int Id)
+        public IResult Delete(Product product)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IDataResult<List<Order>> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IResult Update(Product product)
         {
             throw new NotImplementedException();
         }

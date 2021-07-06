@@ -6,7 +6,7 @@ using Core.DataAccess;
 
 namespace DataAccess.Abstract
 {
-    public interface IProductDal : IEntityRepository<Tb_Product>
+    public interface IProductDal : IEntityRepository<Product>
     {
         
     }

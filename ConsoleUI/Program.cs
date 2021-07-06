@@ -15,9 +15,9 @@ namespace ConsoleUI
         private static void CustomerTest()
         {
             CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
-            foreach (var customer in customerManager.GetAll())
+            foreach (var customer in customerManager.GetAll().Data)
             {
-                Console.WriteLine(customer.Name + " " + customer.LastName + " " + customer.Adress + " " +customer.LastName + " " + customer.Adress);
+                Console.WriteLine(customer.FirstName + " " + customer.LastName + " " + customer.Address + " " +customer.LastName + " " + customer.Address);
             }
         }
 

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DataAccess.Abstract
 {
-    public interface IOrderDal: IEntityRepository<Tb_Order>
+    public interface IOrderDal: IEntityRepository<Order>
     {
         List<OrderDetailDto> GetOrderDetails();
     }

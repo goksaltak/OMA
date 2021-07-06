@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Utilities.Results;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,6 +8,9 @@ namespace Business.Abstract
 {
     public interface IProductService
     {
-        List<Tb_Product> Getall();
+        IDataResult<List<Order>> GetAll();
+        IResult Add(Product product);
+        IResult Update(Product product);
+        IResult Delete(Product product);
     }
 }
