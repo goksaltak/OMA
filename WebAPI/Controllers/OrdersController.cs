@@ -21,7 +21,11 @@ namespace WebAPI.Controllers
         {
             _orderService = orderService;
         }
-
+        /// <summary>
+        /// Create order
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns></returns>
         [HttpPost()]
         public IActionResult Add(Order order)
         {
@@ -32,6 +36,11 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+        /// <summary>
+        /// Delete order
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns></returns>
         [HttpDelete("delete")]
         public IActionResult Delete(Order order)
         {
@@ -42,7 +51,11 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-
+        /// <summary>
+        /// update order
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns></returns>
         [HttpPut("update")]
         public IActionResult Update(Order order)
         {
@@ -53,7 +66,11 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-
+        /// <summary>
+        /// Get by order
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public IActionResult GetOrderDetails(int id)
         {

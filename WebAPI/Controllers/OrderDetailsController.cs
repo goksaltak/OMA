@@ -18,7 +18,11 @@ namespace WebAPI.Controllers
         {
             _orderDetailService = orderDetailService;
         }
-
+        /// <summary>
+        /// Create orderdetail
+        /// </summary>
+        /// <param name="orderDetail"></param>
+        /// <returns></returns>
         [HttpPost()]
         public IActionResult Add(OrderDetail orderDetail)
         {
@@ -29,6 +33,11 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+        /// <summary>
+        /// Delete orderdetail
+        /// </summary>
+        /// <param name="orderDetail"></param>
+        /// <returns></returns>
         [HttpDelete("delete")]
         public IActionResult Delete(OrderDetail orderDetail)
         {
@@ -39,7 +48,11 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-
+        /// <summary>
+        /// update orderdetail
+        /// </summary>
+        /// <param name="orderDetail"></param>
+        /// <returns></returns>
         [HttpPut("update")]
         public IActionResult Update(OrderDetail orderDetail)
         {
@@ -50,6 +63,11 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+        /// <summary>
+        /// Get By orderdetails
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public IActionResult GetOrderDetails(int id)
         {

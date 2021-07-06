@@ -10,9 +10,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace WebAPI
@@ -41,8 +44,24 @@ namespace WebAPI
 
             services.AddSingleton<IProductService, ProductManager>();
             services.AddSingleton<IProductDal, EfProductDal>();
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v2", new OpenApiInfo
+                {
+                    Title = "Order Management API",
+                    Version = "v2",
+                    Description= "an API to perform customer order operations",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Göksal TAK",
+                        Email="goksal.tak@lcwaikiki.com"
+                    }
+                });
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
 
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,13 +70,14 @@ namespace WebAPI
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "OMA API V1");
+                c.SwaggerEndpoint("/swagger/v2/swagger.json", "OMA API ");
             });
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
 
             app.UseHttpsRedirection();
 
@@ -69,7 +89,7 @@ namespace WebAPI
             {
                 endpoints.MapControllers();
             });
-            
+
         }
     }
 }

@@ -4,9 +4,86 @@
         <name>WebAPI</name>
     </assembly>
     <members>
+        <member name="M:WebAPI.Controllers.CustomersController.Add(Entities.Concrete.Customer)">
+            <summary>
+            Create customer
+            </summary>
+            <param name="customer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPI.Controllers.CustomersController.Delete(Entities.Concrete.Customer)">
+            <summary>
+            Delete customer
+            </summary>
+            <param name="customer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPI.Controllers.CustomersController.Update(Entities.Concrete.Customer)">
+            <summary>
+            Update customer
+            </summary>
+            <param name="customer"></param>
+            <returns></returns>
+        </member>
         <member name="M:WebAPI.Controllers.CustomersController.GetById(System.Int32)">
             <summary>
             Get By Customer
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPI.Controllers.OrderDetailsController.Add(Entities.Concrete.OrderDetail)">
+            <summary>
+            Create orderdetail
+            </summary>
+            <param name="orderDetail"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPI.Controllers.OrderDetailsController.Delete(Entities.Concrete.OrderDetail)">
+            <summary>
+            Delete orderdetail
+            </summary>
+            <param name="orderDetail"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPI.Controllers.OrderDetailsController.Update(Entities.Concrete.OrderDetail)">
+            <summary>
+            update orderdetail
+            </summary>
+            <param name="orderDetail"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPI.Controllers.OrderDetailsController.GetOrderDetails(System.Int32)">
+            <summary>
+            Get By orderdetails
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPI.Controllers.OrdersController.Add(Entities.Concrete.Order)">
+            <summary>
+            Create order
+            </summary>
+            <param name="order"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPI.Controllers.OrdersController.Delete(Entities.Concrete.Order)">
+            <summary>
+            Delete order
+            </summary>
+            <param name="order"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPI.Controllers.OrdersController.Update(Entities.Concrete.Order)">
+            <summary>
+            update order
+            </summary>
+            <param name="order"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPI.Controllers.OrdersController.GetOrderDetails(System.Int32)">
+            <summary>
+            Get by order
             </summary>
             <param name="id"></param>
             <returns></returns>

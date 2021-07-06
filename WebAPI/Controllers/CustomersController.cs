@@ -19,7 +19,11 @@ namespace WebAPI.Controllers
         {
             _customerService = customerService;
         }
-
+        /// <summary>
+        /// Create customer
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <returns></returns>
         [HttpPost()]
         public IActionResult Add(Customer customer)
         {
@@ -30,6 +34,11 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+        /// <summary>
+        /// Delete customer
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <returns></returns>
         [HttpDelete("delete")]
         public IActionResult Delete(Customer customer)
         {
@@ -40,7 +49,11 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-
+        /// <summary>
+        /// Update customer
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <returns></returns>
         [HttpPut("update")]
         public IActionResult Update(Customer customer)
         {
