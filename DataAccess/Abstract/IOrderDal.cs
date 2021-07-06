@@ -9,6 +9,6 @@ namespace DataAccess.Abstract
 {
     public interface IOrderDal: IEntityRepository<Order>
     {
-        List<OrderDetailDto> GetOrderDetails();
+        List<OrderDetailDto> GetOrderDetails(int id);
     }
 }

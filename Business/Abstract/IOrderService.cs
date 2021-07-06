@@ -10,8 +10,8 @@ namespace Business.Abstract
     public interface IOrderService
     {
         IDataResult<List<Order>> GetAll();
-        IDataResult<List<OrderDetailDto>> GetOrderDetails();
-        IDataResult<Order> GetById(int orderId);
+        IDataResult<List<OrderDetailDto>> GetOrderDetails(int id);
+        IDataResult<Order> GetById(int id);
         IResult Add(Order order);
         IResult Update(Order order);
         IResult Delete(Order order);

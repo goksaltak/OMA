@@ -36,6 +36,10 @@ namespace Business.Concrete
 
         }
 
+        public DataResult<OrderDetail> GetById(int id)
+        {
+            return new SuccessDataResult<OrderDetail>(_orderDetailDal.Get(o => o.Id == id));
+        }
 
         public IResult Update(OrderDetail orderDetail)
         {

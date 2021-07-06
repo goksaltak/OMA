@@ -12,7 +12,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfOrderDal : EfEntityRepositoryBase<Order, OmaContext>, IOrderDal
     {
-        public List<OrderDetailDto> GetOrderDetails()
+        public List<OrderDetailDto> GetOrderDetails(int id)
         {
             using (OmaContext context = new OmaContext())
             {
@@ -23,6 +23,7 @@ namespace DataAccess.Concrete.EntityFramework
                              on o.CustomerId equals c.Id
                              join p in context.Products
                              on od.ProductId equals p.Id
+                             where o.Id == id
                              select new OrderDetailDto
                              {
                                  OrderId = o.Id,
@@ -36,7 +37,6 @@ namespace DataAccess.Concrete.EntityFramework
                              };
 
                 return result.ToList();
-
 
             }
         }

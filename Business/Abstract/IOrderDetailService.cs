@@ -12,5 +12,6 @@ namespace Business.Abstract
         IResult Add(OrderDetail orderDetail);
         IResult Update(OrderDetail orderDetail);
         IResult Delete(OrderDetail orderDetail);
+        DataResult<OrderDetail> GetById(int id);
     }
 }

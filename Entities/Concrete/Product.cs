@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Entities.Concrete
 {
-    [Table("Product")]
+    [Table("Tb_Product")]
     public class Product : IEntity
     {
         [Key] public int Id { get; set; }

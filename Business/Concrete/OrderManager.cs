@@ -37,14 +37,14 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Order>>(_orderDal.GetAll(),Messages.OrdersListed);
         }
 
-        public IDataResult<Order> GetById(int orderId)
+        public IDataResult<Order> GetById(int id)
         {
-            return new SuccessDataResult<Order>(_orderDal.Get(o => o.Id == orderId));
+            return new SuccessDataResult<Order>(_orderDal.Get(o => o.Id == id));
         }
 
-        public IDataResult<List<OrderDetailDto>>GetOrderDetails()
+        public IDataResult<List<OrderDetailDto>>GetOrderDetails(int id)
         {
-            return new SuccessDataResult<List<OrderDetailDto>>(_orderDal.GetOrderDetails());
+            return new SuccessDataResult<List<OrderDetailDto>>(_orderDal.GetOrderDetails(id));
         }
 
         public IResult Update(Order order)
