@@ -20,7 +20,7 @@ namespace ConsoleUI
                 Console.WriteLine(customer.FirstName + " " + customer.LastName + " " + customer.Address + " " +customer.LastName + " " + customer.Address);
             }
         }
-
+         
         private static void OrderDetailTest()
         {
             OrderManager orderManager = new OrderManager(new EfOrderDal());

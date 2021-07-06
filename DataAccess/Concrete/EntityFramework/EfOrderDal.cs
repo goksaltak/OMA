@@ -28,7 +28,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  OrderId = o.Id,
                                  Name = c.FirstName,
                                  LastName = c.LastName,
-                                 Adress = o.OrderAdress,
+                                 Adress = o.OrderAddress,
                                  Barcode = p.Barcode,
                                  Description = p.Description,
                                  Quantity = od.Quantity,

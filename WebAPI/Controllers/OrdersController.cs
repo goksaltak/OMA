@@ -22,7 +22,7 @@ namespace WebAPI.Controllers
             _orderService = orderService;
         }
 
-        [HttpPost("add")]
+        [HttpPost()]
         public IActionResult Add(Order order)
         {
             var result = _orderService.Add(order);

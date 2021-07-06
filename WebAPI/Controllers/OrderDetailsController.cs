@@ -19,7 +19,7 @@ namespace WebAPI.Controllers
             _orderDetailService = orderDetailService;
         }
 
-        [HttpPost("add")]
+        [HttpPost()]
         public IActionResult Add(OrderDetail orderDetail)
         {
             var result = _orderDetailService.Add(orderDetail);
