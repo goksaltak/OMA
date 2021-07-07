@@ -2,6 +2,8 @@ using Business.Abstract;
 using Business.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -17,6 +19,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using WebAPI.Securities;
 
 namespace WebAPI
 {
@@ -50,17 +53,23 @@ namespace WebAPI
                 {
                     Title = "Order Management API",
                     Version = "v2",
-                    Description= "an API to perform customer order operations",
+                    Description = "an API to perform customer order operations",
                     Contact = new OpenApiContact
                     {
                         Name = "Göksal TAK",
-                        Email="goksal.tak@lcwaikiki.com"
+                        Email = "goksal.tak@lcwaikiki.com"
                     }
                 });
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
 
+            });
+            services.AddAuthentication()
+                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", options => { });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("BasicAuthentication", new AuthorizationPolicyBuilder("BasicAuthentication").RequireAuthenticatedUser().Build());
             });
         }
 

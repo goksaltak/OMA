@@ -2,22 +2,28 @@
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebAPI.Securities;
 
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [BasicAuthorization]
     public class CustomersController : ControllerBase
     {
         ICustomerService _customerService;
+        ILogger<CustomersController> _logger;
 
-        public CustomersController(ICustomerService customerService)
+        public CustomersController(ICustomerService customerService, ILogger<CustomersController> logger)
         {
             _customerService = customerService;
+            _logger = logger;
+
         }
         /// <summary>
         /// Create customer
@@ -30,7 +36,9 @@ namespace WebAPI.Controllers
             var result = _customerService.Add(customer);
             if (result.Success)
             {
+                _logger.LogInformation("Yeni müşteri eklendi.");
                 return Ok(result);
+
             }
             return BadRequest(result);
         }
@@ -45,6 +53,7 @@ namespace WebAPI.Controllers
             var result = _customerService.Delete(customer);
             if (result.Success)
             {
+                _logger.LogInformation("Müşteri silindi.");
                 return Ok(result);
             }
             return BadRequest(result);
@@ -60,10 +69,12 @@ namespace WebAPI.Controllers
             var result = _customerService.Update(customer);
             if (result.Success)
             {
+                _logger.LogInformation("Müşteri kaydı güncellendi.");
                 return Ok(result);
             }
             return BadRequest(result);
         }
+
         /// <summary>
         /// Get By Customer
         /// </summary>
@@ -75,7 +86,9 @@ namespace WebAPI.Controllers
             var result = _customerService.GetById(id);
             if (result.Success)
             {
+                
                 return Ok(result);
+                _logger.LogInformation(id + "ID'li müşteri sorgulandı");
             }
             return BadRequest(result);
         }
