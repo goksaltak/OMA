@@ -11,6 +11,6 @@ namespace Business.Abstract
         IDataResult<List<Order>> GetAll();
         IResult Add(Product product);
         IResult Update(Product product);
-        IResult Delete(Product product);
+        IResult Delete(int id);
     }
 }

@@ -21,14 +21,14 @@ namespace Business.Concrete
 
         public IResult Add(Order order)
         {
-          
+            order.CreatedOn = DateTime.Now;
             _orderDal.Add(order);
             return new SuccessResult(Messages.OrderAdded);
         }
 
-        public IResult Delete(Order order)
+        public IResult Delete(int id)
         {
-            _orderDal.Delete(order);
+            _orderDal.Delete(id);
             return new SuccessResult(Messages.OrderDeleted);
         }
 
@@ -49,8 +49,18 @@ namespace Business.Concrete
 
         public IResult Update(Order order)
         {
-            _orderDal.Update(order);
-            return new SuccessResult(Messages.OrderUpdated);
+            var entity = _orderDal.Get(o => o.Id == order.Id);
+            if (entity != null)
+            {
+                entity.CustomerId = order.CustomerId;
+                entity.OrderAddress = order.OrderAddress;
+                entity.ModifiedOn = DateTime.Now;
+                entity.ModifiedUser = order.ModifiedUser;
+
+                _orderDal.Update(entity);
+                return new SuccessResult(Messages.CustomerUpdated);
+            }
+            return new ErrorResult(Messages.CustomerNotFound);
         }
     }
 }

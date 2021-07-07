@@ -17,14 +17,16 @@ namespace WebAPI.Controllers
     public class CustomersController : ControllerBase
     {
         ICustomerService _customerService;
+        IOrderService _orderService;
         ILogger<CustomersController> _logger;
 
-        public CustomersController(ICustomerService customerService, ILogger<CustomersController> logger)
+        public CustomersController(ICustomerService customerService, ILogger<CustomersController> logger, IOrderService orderService)
         {
             _customerService = customerService;
             _logger = logger;
+            _orderService=orderService;
 
-        }
+    }
         /// <summary>
         /// Create customer
         /// </summary>
@@ -47,10 +49,10 @@ namespace WebAPI.Controllers
         /// </summary>
         /// <param name="customer"></param>
         /// <returns></returns>
-        [HttpDelete("delete")]
-        public IActionResult Delete(Customer customer)
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
         {
-            var result = _customerService.Delete(customer);
+            var result = _customerService.Delete(id);
             if (result.Success)
             {
                 _logger.LogInformation("Müşteri silindi.");
@@ -86,12 +88,34 @@ namespace WebAPI.Controllers
             var result = _customerService.GetById(id);
             if (result.Success)
             {
-                
-                return Ok(result);
                 _logger.LogInformation(id + "ID'li müşteri sorgulandı");
+                return Ok(result);
             }
             return BadRequest(result);
         }
 
+        [HttpGet("{id}/orders")]
+        public IActionResult Orders(int id)
+        {
+            var result = _orderService.GetOrderDetails(id);
+            if (result.Success)
+            {
+                _logger.LogInformation("Müşteri siparişleri listelendi.");
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("/orders/{id}")]
+        public IActionResult GetByOrderId(int id)
+        {
+            var result = _orderService.GetById(id);
+            if (result.Success)
+            {
+                _logger.LogInformation("Sipariş listelendi");
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
     }
 }

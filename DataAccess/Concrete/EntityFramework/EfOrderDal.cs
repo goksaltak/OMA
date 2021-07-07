@@ -23,7 +23,7 @@ namespace DataAccess.Concrete.EntityFramework
                              on o.CustomerId equals c.Id
                              join p in context.Products
                              on od.ProductId equals p.Id
-                             where o.Id == id
+                             where c.Id == id
                              select new OrderDetailDto
                              {
                                  OrderId = o.Id,

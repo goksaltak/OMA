@@ -17,19 +17,23 @@ namespace Core.DataAccess.EntityFramework
         {
             using (TContext context = new TContext())
             {
-                var AddedEntity = context.Entry(entity);
-                AddedEntity.State = EntityState.Added;
+                var addedEntity = context.Entry(entity);
+                addedEntity.State = EntityState.Added;
                 context.SaveChanges();
             }
         }
 
-        public void Delete(TEntity entity)
+        public void Delete(int id)
         {
             using (TContext context = new TContext())
             {
-               var DeletedEntity = context.Entry(entity);
-               DeletedEntity.State = EntityState.Deleted;
-               context.SaveChanges();
+               var deletedEntity = context.Set<TEntity>().FirstOrDefault(x => x.Id == id);
+                if (deletedEntity != null)
+                {
+                    context.Entry(deletedEntity).State = EntityState.Deleted;
+                    context.SaveChanges();
+                }
+
             }
         }
 
@@ -37,7 +41,7 @@ namespace Core.DataAccess.EntityFramework
         {
             using (TContext context = new TContext())
             {
-                return context.Set<TEntity>().SingleOrDefault(filter);
+                return context.Set<TEntity>().FirstOrDefault(filter);
             }
         }
 
@@ -53,9 +57,17 @@ namespace Core.DataAccess.EntityFramework
         {
             using (TContext context = new TContext())
             {
-                var UpdatedEntity = context.Entry(entity);
-                UpdatedEntity.State = EntityState.Modified;
+                var updatedEntity = context.Entry(entity);
+                updatedEntity.State = EntityState.Modified;
                 context.SaveChanges();
+            }
+        }
+
+        public int Count(Expression<Func<TEntity, bool>> filter)
+        {
+            using (TContext context = new TContext())
+            {
+                return context.Set<TEntity>().Count(filter);
             }
         }
     }

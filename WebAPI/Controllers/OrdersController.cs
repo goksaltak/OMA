@@ -4,6 +4,7 @@ using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +19,12 @@ namespace WebAPI.Controllers
     public class OrdersController : ControllerBase
     {
         IOrderService _orderService;
+        ILogger<OrdersController> _logger;
 
-        public OrdersController(IOrderService orderService)
+        public OrdersController(IOrderService orderService, ILogger<OrdersController> logger)
         {
             _orderService = orderService;
+            _logger = logger;
         }
         /// <summary>
         /// Create order
@@ -34,6 +37,7 @@ namespace WebAPI.Controllers
             var result = _orderService.Add(order);
             if (result.Success)
             {
+                _logger.LogInformation("Yeni sipariş eklendi.");
                 return Ok(result);
             }
             return BadRequest(result);
@@ -43,12 +47,13 @@ namespace WebAPI.Controllers
         /// </summary>
         /// <param name="order"></param>
         /// <returns></returns>
-        [HttpDelete("delete")]
-        public IActionResult Delete(Order order)
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
         {
-            var result = _orderService.Delete(order);
+            var result = _orderService.Delete(id);
             if (result.Success)
             {
+                _logger.LogInformation("Sipariş silindi.");
                 return Ok(result);
             }
             return BadRequest(result);
@@ -64,6 +69,7 @@ namespace WebAPI.Controllers
             var result = _orderService.Update(order);
             if (result.Success)
             {
+                _logger.LogInformation("Sipariş güncellendi.");
                 return Ok(result);
             }
             return BadRequest(result);
@@ -74,36 +80,17 @@ namespace WebAPI.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public IActionResult GetOrderDetails(int id)
+        public IActionResult GetById(int id)
         {
-            var result = _orderService.GetOrderDetails(id);
+            var result = _orderService.GetById(id);
             if (result.Success)
             {
+                _logger.LogInformation("Sipariş listelendi");
                 return Ok(result);
             }
             return BadRequest(result);
         }
 
-        //[HttpGet]
-        //public IActionResult Get()
-        //{
-        //    var result = _orderService.GetAll();
-        //    if (result.Success)
-        //    {
-        //        return Ok(result);
-        //    }
-        //    return BadRequest(result);
-        //}
-
-        //[HttpPost]
-        //public IActionResult Post(Order order)
-        //{
-        //    var result = _orderService.Add(order);
-        //    if (result.Success)
-        //    {
-        //        return Ok(result);
-        //    }
-        //    return BadRequest(result);
-        //}
+        
     }
 }

@@ -8,18 +8,10 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            //CustomerTest();
             OrderDetailTest();
         }
 
-        private static void CustomerTest()
-        {
-            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
-            foreach (var customer in customerManager.GetAll().Data)
-            {
-                Console.WriteLine(customer.FirstName + " " + customer.LastName + " " + customer.Address + " " +customer.LastName + " " + customer.Address);
-            }
-        }
+       
 
         private static void OrderDetailTest()
         {
